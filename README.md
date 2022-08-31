@@ -45,12 +45,12 @@
 
 ### 7. 影片發行年份 vs 影片評分
 * 整體而言，發行年份與影片評分無關。
-* 就分佈情形來看，1990年以前發行的作品，評分相較更集中在高分區。
+* 就分佈情形來看，1990年以前發行的作品，評分相較更集中在高分區。但這類作品很少。
 <img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/release.png" width="582.4" height="419.6">
 
 ### 8. (上架-發行)時間差 vs 影片評分
 * 整體而言，「作品從上架到發行的時間差」不影響影片評分。
-* 就分佈情形來看，時間差大於11000天（約30年）的作品，評分相對更集中在高分區。
+* 就分佈情形來看，時間差大於11000天（約30年）的作品，評分相對更集中在高分區。但這類作品很少。
 <img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/diff.png" width="582.4" height="430">
 
 
