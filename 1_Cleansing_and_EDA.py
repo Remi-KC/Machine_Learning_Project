@@ -51,38 +51,19 @@ dtypes: float64(6), int64(1), object(17)
 memory usage: 1.6+ MB
 
 '''
-#%% 影視分類 vs 影片評分(numVotes>1000)
-showtype = netflix[netflix["numVotes"]>1000][["type", "averageRating"]]
-# 按照 影視分類 計算平均評分
-showtype_avg = showtype.groupby(["type"]).mean().reset_index()
-showtype_avg.sort_values(by=["averageRating"], ascending=False, inplace=True) 
 
-showtype_score = showtype.merge(showtype_avg, how="left", on=["type"])
-showtype_score.sort_values(by=["averageRating_y"], ascending=False, inplace=True) 
-
-#%% 作圖：影視分類 vs 影片評分(numVotes>1000)
-
-plt.figure(figsize = (8, 8), dpi=200)
-
-sns.barplot(x="type", y="averageRating", data=showtype_avg,
-            alpha=.8, palette="rocket")
-sns.stripplot(x="type", y="averageRating_x", data=showtype_score,
-              edgecolor='brown', linewidth=0.2, jitter=0.3, palette="rocket")
-
-plt.title("Netflix 影視分類 vs 影片評分", fontsize=21, loc="left")
-plt.title("評分數>1000人", fontsize=15, loc="right")
-plt.xlabel("")
-plt.xticks(np.arange(2),["電視節目", "電影節目"])
-plt.ylabel("影\n片\n評\n分\n:\n平\n均\n數", rotation=0, fontsize=18, labelpad=15, loc="center")
-plt.yticks(np.arange(11))
-plt.grid()
-              
-sns.despine()
-
-# 存檔
-plt.savefig(path2+"type.png", bbox_inches="tight")
-plt.show()
-
+netflix[netflix["numVotes"]>1000]["averageRating"].describe()
+'''
+count    5337.000000
+mean        6.645063
+std         1.148135
+min         1.600000
+25%         5.900000
+50%         6.700000
+75%         7.500000
+max         9.600000
+Name: averageRating, dtype: float64
+'''
 
 #%% 國家 vs 影片評分(numVotes>1000)
 loc = netflix[netflix["numVotes"]>1000][["country_main", "averageRating"]]
@@ -220,7 +201,6 @@ sns.despine()
 # 存檔
 plt.savefig(path2+"country.png", bbox_inches="tight")
 plt.show()
-
 
 #%% 影片分類處理
 # Netflix Main Genre Categories 官網大分類項
@@ -368,7 +348,6 @@ Insights:
 plt.figure(figsize = (18, 15), dpi=200)
 plt.subplots_adjust(hspace=0.5)
 
-
 plt.subplot(2,1,1)
 sns.barplot(x="listed_in", y="averageRating", data=genre_avg[genre_avg["type"]=="TV Show"], alpha=.8)
 sns.stripplot(x="listed_in", y="averageRating_x", data=genre_score[genre_score["type"]=="TV Show"], 
@@ -398,6 +377,38 @@ sns.despine()
 
 # 存檔
 plt.savefig(path2+"type_genre.png", bbox_inches="tight")
+plt.show()
+
+#%% 影視分類 vs 影片評分(numVotes>1000)
+showtype = netflix[netflix["numVotes"]>1000][["type", "averageRating"]]
+# 按照 影視分類 計算平均評分
+showtype_avg = showtype.groupby(["type"]).mean().reset_index()
+showtype_avg.sort_values(by=["averageRating"], ascending=False, inplace=True) 
+
+showtype_score = showtype.merge(showtype_avg, how="left", on=["type"])
+showtype_score.sort_values(by=["averageRating_y"], ascending=False, inplace=True) 
+
+#%% 作圖：影視分類 vs 影片評分(numVotes>1000)
+
+plt.figure(figsize = (8, 8), dpi=200)
+
+sns.barplot(x="type", y="averageRating", data=showtype_avg,
+            alpha=.8, palette="rocket")
+sns.stripplot(x="type", y="averageRating_x", data=showtype_score,
+              edgecolor='brown', linewidth=0.2, jitter=0.3, palette="rocket")
+
+plt.title("Netflix 影視分類 vs 影片評分", fontsize=21, loc="left")
+plt.title("評分數>1000人", fontsize=15, loc="right")
+plt.xlabel("")
+plt.xticks(np.arange(2),["電視節目", "電影節目"])
+plt.ylabel("影\n片\n評\n分\n:\n平\n均\n數", rotation=0, fontsize=18, labelpad=15, loc="center")
+plt.yticks(np.arange(11))
+plt.grid()
+              
+sns.despine()
+
+# 存檔
+plt.savefig(path2+"type.png", bbox_inches="tight")
 plt.show()
 
 #%% 發行年份vs評分 corr
@@ -435,7 +446,6 @@ sns.despine()
 # 存檔
 plt.savefig(path2+"release.png", bbox_inches="tight", dpi=200)
 plt.show()
-
 
 #%% 時間差vs評分 corr
 diff = netflix[["diff_days", "averageRating", "numVotes"]]
@@ -617,7 +627,6 @@ netflix["country_main"] = netflix["country_main"].apply(lambda x: np.nan if x in
 
 # 只保留評分人次>1000的資料，否則評分本身沒有可信度
 netflix = netflix[netflix["numVotes"]>1000]
-
 
 # 只保留需要的欄位
 netflix = netflix[["type","listed_in", "country_main", "best_director", "averageRating"]]

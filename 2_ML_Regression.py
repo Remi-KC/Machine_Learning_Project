@@ -23,23 +23,6 @@ plt.rcParams["font.size"] = 13
 netflix.info()
 '''
 <class 'pandas.core.frame.DataFrame'>
-RangeIndex: 5319 entries, 0 to 5318
-Data columns (total 7 columns):
- #   Column         Non-Null Count  Dtype  
----  ------         --------------  -----  
- 0   type           5319 non-null   object 
- 1   listed_in      5146 non-null   object 
- 2   country_main   4923 non-null   object 
- 3   best_director  5319 non-null   int64  
- 4   classic        5319 non-null   object 
- 5   diff           5319 non-null   object 
- 6   averageRating  5319 non-null   float64
-dtypes: float64(1), int64(1), object(5)
-memory usage: 291.0+ KB
-'''
-
-'''
-<class 'pandas.core.frame.DataFrame'>
 RangeIndex: 5337 entries, 0 to 5336
 Data columns (total 5 columns):
  #   Column         Non-Null Count  Dtype  
@@ -55,12 +38,6 @@ memory usage: 208.6+ KB
 
 # 遺漏值處理：填入新標籤Unknown，避免損失太多資料
 netflix = netflix.fillna("Unknown").reset_index(drop=True)
-
-# 遺漏值處理：刪除，提升模型準確度
-#netflix.dropna(inplace=True)
-
-#print("刪除遺漏值後，使用資料佔%.2f%%" % (len(netflix)/5337*100))
-#刪除遺漏值後，使用資料佔89.81%
 
 #%% one-hot encoding
 
