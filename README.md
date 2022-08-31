@@ -66,6 +66,9 @@
     * 3.影片分級
 
 ## 五、	迴歸模型：
+### 遺漏值處理
+### 特徵處理
+### 模型結果
 ![image](https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/corr.png)
 
 
