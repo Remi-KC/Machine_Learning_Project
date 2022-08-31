@@ -1,24 +1,26 @@
 # Netflix 影片評分預測模型 ---Machine Learning Project
 <br>
 
-## 一、	專題目標：
+## 一、	專題目標
 延續前一份專題，就現有資料集，探索哪些特徵可能影響影片評分，建構評分預測模型。
 <br>
  
-## 二、	資料概述：
+## 二、	資料概述
 ### Netflix平台影片與評分資料（8807筆）：
-* 來源：使用前一份專題清理、合併過後的Netflix資料。 https://github.com/Remi-KC/DataAnalysisProject_with_WebCrawling
+* [來源](https://github.com/Remi-KC/DataAnalysisProject_with_WebCrawling "看資料來源")：使用前一份專題清理、合併過後的Netflix資料。 
 * 欄位：片名、影視分類、影片類型、國家、發行年份、上架日期、影片分級、（上架-發行）時間差、導演、演員、作品描述、影片評分、影片評分人次
 <br>
 
-## 三、	資料清理（清理後共5337筆）：
+## 三、	資料清理（清理後共5337筆）
+>程式碼請參考：[1_Cleansing_and_EDA.py](https://github.com/Remi-KC/Machine_Learning_Project/blob/main/1_Cleansing_and_EDA.py "看我的程式碼")
 *	資料篩選：只保留評分人次>1000的資料，否則評分本身可信度不足。
 *	影片類型：合併細項，只保留官網公告的大分類項目，將分類數降低到13種。
 *	國家欄位：影片數量不足10部的國家，更改其國家為空值。因為筆數太少的情況下，這些國別與評分的關係有可能只是湊巧。
 *	導演欄位：爬蟲75位最佳導演名單，比對影片是否由這些導演執導，新增類別變項best_director（1=由最佳導演執導，0=非由最佳導演執導）。
 <br>
 
-## 四、	資料分析：
+## 四、	資料分析
+>程式碼請參考：[1_Cleansing_and_EDA.py](https://github.com/Remi-KC/Machine_Learning_Project/blob/main/1_Cleansing_and_EDA.py "看我的程式碼")
 ### 1. 國家 vs 影片評分
 * 各國影片評分有差異。作品最受好評的前三名依序是：日本、紐西蘭、英國，臺灣則名列第12。
 * 美國雖然是影片數量最多的國家，但是他的影片評分分佈也最廣，從低分到高分的影片數量都很多，並沒有特別集中在哪一個分數區間。
@@ -53,7 +55,7 @@
 * 就分佈情形來看，時間差大於11000天（約30年）的作品，評分相對更集中在高分區。但這類作品很少。
 <img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/diff.png" width="582.4" height="430">
 
-### 小結：
+### 小結
 * 對影片評分可能有影響的特徵：
     * 1.影視類別（電影/電視）
     * 2.影片類型（紀錄片、經典、動畫、劇情......）
@@ -66,17 +68,18 @@
     * 3.影片分級
 <br>
 
-## 五、	迴歸模型：
-### 1. 遺漏值處理
+## 五、	迴歸模型
+>程式碼請參考：[2_ML_Regression.py](https://github.com/Remi-KC/Machine_Learning_Project/blob/main/2_ML_Regression.py "看我的程式碼")
+### 1. 遺漏值處理：
 * 有遺漏值的欄位：國家、影片類型
 * 填入"Unknown"，避免損失太多資料
 
-### 2. 特徵處理
+### 2. 特徵處理：
 * 類別資料轉成one-hot encoding：影視類別、影片類型、國家、有無著名導演
 * 由於影片類型中，部分欄位有複數個值，使用MultiLabelBinarizer轉成one-hot encoding
 * 類別特徵全部轉換完後，將Unknown特徵刪除(原本為遺漏值)，避免混淆結果。
  
-### 3. 模型結果與結論
+### 3. 模型結果與結論：
 * 實際評分和預測評分有中度相關，且相關達顯著(r = .52；p < 0.001)。
 * 模型可解釋比例約26%，MSE為1.03。尚有探索其他特徵的空間。
 * 可能有其他應該納入的特徵，也可能現有資料集裡真的沒有關鍵特徵。
