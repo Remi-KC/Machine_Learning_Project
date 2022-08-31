@@ -53,6 +53,17 @@
 * 就分佈情形來看，時間差大於11000天（約30年）的作品，評分相對更集中在高分區。但這類作品很少。
 <img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/diff.png" width="582.4" height="430">
 
+### 小結：
+* 對影片評分可能有影響的特徵：
+    * 1.影視類型（電影/電視）
+    * 2.影片類型（紀錄片、經典、動畫、劇情......）
+    * 3.出品國家
+    * 4.有無著名導演
+    
+* 對影片評分沒有影響的特徵：
+    * 1.影片發行年份
+    * 2.（影片上架-影片發行）時間差
+    * 3.影片分級
 
 ## 五、	迴歸模型：
 ![image](https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/corr.png)
