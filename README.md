@@ -30,6 +30,7 @@
 <br>
 
 ### 2. 影視類別x影片類型 vs 影片評分
+<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/type_genre.png" width="844.571"><br>
 <img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/type_genre.png" width="844.571" height="780.285"><br>
 * 電視的評分看起來都比電影來得高，這部分待後續確認。
 * 不同影片類型的評分有差異，電影和電視的前三名都包含：經典、動畫、紀錄片。
