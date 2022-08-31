@@ -31,36 +31,35 @@
 
 ### 2. 影視類別x影片類型 vs 影片評分
 <img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/type_genre.png" width="844.571"><br>
-<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/type_genre.png" width="844.571" height="780.285"><br>
 * 電視的評分看起來都比電影來得高，這部分待後續確認。
 * 不同影片類型的評分有差異，電影和電視的前三名都包含：經典、動畫、紀錄片。
 * 在電視和電影節目中，受到好評的前三名雷同，但後續的排名不完全相同。影視類別和影片類型可能相互影響評分，後續建模有必要個別納入這兩個特徵。
 <br>
 
 ### 3. 影視類別 vs 影片評分
-<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/type.png" width="500" height="500"><br>
+<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/type.png" width="500"><br>
 * 電視作品的評分的確高於電影作品。而且這個差距將近一個標準差(std=1.148)。
 <br>
 
 ### 4. 有無著名導演執導 vs 影片評分
-<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/director.png" width="500" height="500"><br>
+<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/director.png" width="500"><br>
 * 有著名導演執導的作品評分比較高，且分佈多數集中在6分以上的高分區。但這類作品數量相對很少。
 * 沒有著名導演執導的作品評分比較低，評分幾乎涵蓋所有區間。
 <br>
 
 ### 5. 影片分級 vs 影片評分
-<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/rating.png" width="572" height="379.33"><br>
+<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/rating.png" width="572"><br>
 * 不同分級的影片評分幾乎沒有差異，且評分的分佈情形也雷同。
 <br>
 
 ### 7. 影片發行年份 vs 影片評分
-<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/release.png" width="582.4" height="419.6"><br>
+<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/release.png" width="582.4"><br>
 * 整體而言，發行年份與影片評分無關。
 * 就分佈情形來看，1990年以前發行的作品，評分相較更集中在高分區。但這類作品很少。
 <br>
 
 ### 8. (上架-發行)時間差 vs 影片評分
-<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/diff.png" width="582.4" height="430"><br>
+<img src="https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/diff.png" width="582.4"><br>
 * 整體而言，「作品從上架到發行的時間差」不影響影片評分。
 * 就分佈情形來看，時間差大於11000天（約30年）的作品，評分相對更集中在高分區。但這類作品很少。
 <br>
