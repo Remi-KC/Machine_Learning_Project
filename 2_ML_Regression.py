@@ -77,6 +77,70 @@ print("R-squared: %.2f" % lm.score(XTest, yTest))
 # MSE: 1.03
 # R-squared: 0.26
 
+#%% 迴歸係數-- 大部分特徵的與評分的關聯都不高
+coef = pd.DataFrame(data=lm.coef_, index=X.columns)
+coef.rename(columns={0:"coef"}, inplace=True)
+coef["abs_coef"] = abs(coef.coef)
+print(coef.sort_values(by=["abs_coef"], ascending=False, inplace=True))
+'''
+                        coef  abs_coef
+Poland             -0.745314  0.745314
+Classic             0.732956  0.732956
+New Zealand         0.711584  0.711584
+Horror             -0.569830  0.569830
+South Korea         0.561574  0.561574
+Documentaries       0.542138  0.542138
+Thailand            0.491208  0.491208
+Indonesia           0.475340  0.475340
+Japan               0.459034  0.459034
+Philippines         0.452020  0.452020
+South Africa        0.416117  0.416117
+TV Show             0.413353  0.413353
+Movie              -0.413353  0.413353
+Israel              0.402761  0.402761
+Ireland             0.390623  0.390623
+Colombia           -0.374552  0.374552
+best_director       0.351895  0.351895
+no_best_director   -0.351895  0.351895
+Anime               0.316185  0.316185
+Netherlands        -0.315133  0.315133
+Russia              0.314977  0.314977
+Dramas              0.313361  0.313361
+Hong Kong           0.302372  0.302372
+Children & Family  -0.294285  0.294285
+Nigeria            -0.285967  0.285967
+Egypt               0.252181  0.252181
+Romantic           -0.218732  0.218732
+Denmark             0.208071  0.208071
+United Kingdom      0.187244  0.187244
+Action & Adventure -0.185312  0.185312
+Argentina           0.167575  0.167575
+France             -0.163476  0.163476
+Canada             -0.158107  0.158107
+India               0.139964  0.139964
+Germany            -0.135872  0.135872
+Italy              -0.132198  0.132198
+Thrillers          -0.127348  0.127348
+Mexico              0.120782  0.120782
+Norway              0.095806  0.095806
+Brazil             -0.081946  0.081946
+Sports              0.073597  0.073597
+Sweden              0.068985  0.068985
+Belgium            -0.068130  0.068130
+Spain              -0.061123  0.061123
+Australia          -0.044978  0.044978
+United States      -0.029710  0.029710
+Sci-Fi & Fantasy    0.019136  0.019136
+Turkey             -0.017372  0.017372
+Comedies            0.014693  0.014693
+Music               0.007305  0.007305
+China               0.006711  0.006711
+Taiwan              0.006245  0.006245
+'''
+
+#%% coef 作圖
+sns.barplot(data=coef, x=coef.index, y="abs_coef")
+
 #%% 計算相關值
 res = pearsonr(np.array(yTest), pred_test)
 print(res)# (0.5172091626329249, 4.111238613058888e-74)
