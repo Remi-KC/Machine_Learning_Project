@@ -15,11 +15,11 @@ path2 = "/Users/remikc/Programming/Python/ML_Project/Plot/"
 # load data
 netflix = pd.read_csv(path1+"netflix.csv")
 
-# 中文設定
+# 中文設定#
 plt.rcParams["font.family"] = ["Heiti TC"]
 plt.rcParams["font.size"] = 13
 
-#%%
+#%% 遺漏值處理
 netflix.info()
 '''
 <class 'pandas.core.frame.DataFrame'>
@@ -181,4 +181,39 @@ plt.grid()
 # 存檔
 plt.savefig(path2+"corr.png", bbox_inches="tight", dpi=200)
 plt.show()
+
+#%% 過濾迴歸係數太小的特徵｜效果-->模型最大解釋力最多就是0.26，無法再提升。應考慮增加其他特徵。
+for i in range(1, 6):
+    X2 = data.drop(columns=coef[coef["abs_coef"]<(i/10)].index)
+    y = netflix["averageRating"]
+
+    XTrain, XTest, yTrain, yTest = train_test_split(X2, y, test_size=0.2, random_state=10)
+    lm = LinearRegression().fit(XTrain, yTrain)
+    pred_test = lm.predict(XTest)
+
+    print("--過濾掉迴歸係數 < %.1f 的特徵--" % (i/10))    
+    print("MSE: %.2f" % np.mean((yTest-pred_test)**2))
+    print("R-squared: %.2f" % lm.score(XTest, yTest))
+    print()
+'''
+--過濾掉迴歸係數 < 0.1 的特徵--
+MSE: 1.03
+R-squared: 0.26
+
+--過濾掉迴歸係數 < 0.2 的特徵--
+MSE: 1.05
+R-squared: 0.25
+
+--過濾掉迴歸係數 < 0.3 的特徵--
+MSE: 1.06
+R-squared: 0.24
+
+--過濾掉迴歸係數 < 0.4 的特徵--
+MSE: 1.11
+R-squared: 0.21
+
+--過濾掉迴歸係數 < 0.5 的特徵--
+MSE: 1.26
+R-squared: 0.10
+'''
 
