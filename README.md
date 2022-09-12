@@ -91,11 +91,20 @@
 * 類別特徵全部轉換完後，將Unknown特徵刪除(原本為遺漏值)，避免混淆結果。
  
 ### 3. 模型結果與結論：
-![image](https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/corr.png)
+![image](https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/corr.png)<br>
 * 實際評分和預測評分有中度相關，且相關達顯著(r = .52；p < 0.001)。
 * 模型可解釋比例約26%，MSE為1.03。尚有探索其他特徵的空間。
-* 可能有其他應該納入的特徵，也可能現有資料集裡真的沒有關鍵特徵。
-* 後續可以考慮探索本資料集或者另找其他資料（本資料集中尚未探索的特徵為：「演員」和「影片描述」）。
+<br>
+
+![image](https://github.com/Remi-KC/Machine_Learning_Project/blob/main/Plot/coef.png)<br>
+* 可以看到，現有資料集中，大部分特徵的預測力都偏低，因此模型結果差強人意。
+<br>
+
+* 後續方向：
+  * 調整處理「導演」特徵的方式，改為該片導演總執導次數。
+  * 「演員」特徵比照「導演」處理，計算前三位演員(主演)出演的總數。
+  * 探索文字特徵：「影片描述」
+  * 另找其他資料（本資料集中尚未探索的特徵為：「演員」和「影片描述」）。
 
 
 
