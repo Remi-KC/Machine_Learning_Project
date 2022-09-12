@@ -143,12 +143,11 @@ plt.figure(figsize = (18, 10), dpi=200)
 sns.barplot(data=coef, x=coef.index, y="abs_coef")
 
 plt.title("所有特徵｜ 迴歸係數絕對值", fontsize=21, loc="left")
-
 plt.xticks(rotation=90)
 plt.ylabel("迴\n歸\n係\n數\n:\n絕\n對\n值", rotation=0, fontsize=18, labelpad=15, loc="center")
-
 plt.grid()
 sns.despine()
+
 # 存檔
 plt.savefig(path2+"coef.png", bbox_inches="tight")
 plt.show()
